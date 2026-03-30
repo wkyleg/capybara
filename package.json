@@ -1,7 +1,12 @@
 {
   "name": "copypara",
   "version": "1.0.0",
-  "description": "CopyPara — neuro-modulated capybara endless runner (Elata)",
+  "description": "Capybara — neuro-modulated tropical runner (Elata EEG / rPPG)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wkyleg/capybara.git"
+  },
+  "homepage": "https://wkyleg.github.io/capybara/",
   "type": "module",
   "packageManager": "pnpm@8.9.2",
   "scripts": {

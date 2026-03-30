@@ -1,0 +1,39 @@
+{
+  "name": "copypara",
+  "version": "1.0.0",
+  "description": "CopyPara — neuro-modulated capybara endless runner (Elata)",
+  "type": "module",
+  "packageManager": "pnpm@8.9.2",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "check": "biome check --write .",
+    "lint": "biome check ."
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.8",
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7",
+    "vite-plugin-top-level-await": "^1.6.0",
+    "vite-plugin-wasm": "^3.6.0"
+  },
+  "dependencies": {
+    "@elata-biosciences/eeg-web": "^0.1.5",
+    "@elata-biosciences/eeg-web-ble": "^0.1.5",
+    "@elata-biosciences/rppg-web": "^0.1.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.1.0",
+    "recharts": "^2.15.0",
+    "zustand": "^5.0.0"
+  }
+}

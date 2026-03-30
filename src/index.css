@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+/* Tailwind v4 design tokens — use utilities: bg-jungle-900, text-sunset, font-display, etc. */
+@theme {
+  --font-display: "Fredoka", ui-rounded, system-ui, sans-serif;
+  --font-body: "Nunito", ui-sans-serif, system-ui, sans-serif;
+
+  --color-jungle-950: #021910;
+  --color-jungle-900: #042c22;
+  --color-jungle-800: #0a3d2e;
+  --color-jungle-700: #0f5c45;
+  --color-lagoon-400: #5eead4;
+  --color-lagoon-500: #2dd4bf;
+  --color-lagoon-600: #14b8a6;
+  --color-sunset-400: #fdba74;
+  --color-sunset-500: #fb923c;
+  --color-sunset-600: #ea580c;
+  --color-yuzu-300: #fde68a;
+  --color-yuzu-400: #fbbf24;
+  --color-yuzu-500: #f59e0b;
+  --color-mint-300: #bbf7d0;
+  --color-mint-400: #86efac;
+  --color-mint-500: #4ade80;
+  --color-coral-400: #fb923c;
+  --color-coral-500: #f97316;
+  --color-cream-100: #fffbeb;
+  --color-cream-200: #fef3c7;
+  --color-cream-300: rgba(255, 252, 245, 0.92);
+  --color-muted-tropical: rgba(255, 250, 235, 0.68);
+  --shadow-tropical: 0 24px 80px rgba(2, 25, 20, 0.55);
+  --shadow-glow-sunset: 0 0 40px rgba(251, 146, 60, 0.2);
+}
+
+/*
+ * Semantic vars — neuro components + Recharts + any remaining style={{}} use these.
+ * Mirror tropical palette (not Reaction Trainer purple/cyan).
+ */
+:root {
+  --bg0: #021910;
+  --bg1: #042c22;
+  --bg2: #0a3d2e;
+  --text: rgba(255, 252, 245, 0.95);
+  --muted: rgba(255, 250, 235, 0.68);
+  --good: #86efac;
+  --warn: #fbbf24;
+  --bad: #fb7185;
+  --accent: #fb923c;
+  --accent2: #2dd4bf;
+  --glass: rgba(255, 255, 255, 0.1);
+  --line: rgba(255, 255, 255, 0.16);
+  --color-primary: #14b8a6;
+  --color-panel: rgba(45, 212, 191, 0.1);
+  --color-muted: var(--muted);
+  --color-calm: #86efac;
+  --color-accent: #0d9488;
+  --chart-tooltip-bg: rgba(6, 40, 32, 0.96);
+  --font-display: "Fredoka", ui-rounded, system-ui, sans-serif;
+  --font-body: "Nunito", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text);
+    overflow-x: hidden;
+    background-color: var(--bg0);
+    background-image:
+      radial-gradient(ellipse 120% 80% at 85% -10%, rgba(251, 146, 60, 0.28) 0%, transparent 45%),
+      radial-gradient(ellipse 90% 70% at 5% 20%, rgba(45, 212, 191, 0.18) 0%, transparent 42%),
+      radial-gradient(ellipse 100% 60% at 70% 100%, rgba(15, 92, 69, 0.55) 0%, transparent 50%),
+      linear-gradient(168deg, var(--bg2) 0%, var(--bg1) 42%, var(--bg0) 100%);
+    background-attachment: fixed;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(254, 243, 199, 0.12) 0%, transparent 70%);
+      animation: canopy-shimmer 14s ease-in-out infinite alternate;
+    }
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@keyframes canopy-shimmer {
+  0% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.45;
+    transform: scale(1.03);
+  }
+}
+
+@layer components {
+  .tropical-panel {
+    @apply rounded-2xl border border-white/15 backdrop-blur-xl;
+    background:
+      radial-gradient(ellipse 100% 80% at 100% 0%, rgba(251, 146, 60, 0.12) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 60% at 0% 100%, rgba(45, 212, 191, 0.12) 0%, transparent 50%), rgba(0, 0, 0, 0.32);
+    box-shadow:
+      var(--shadow-tropical),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .tropical-title {
+    font-family: var(--font-display);
+    @apply font-bold tracking-wide text-sunset-500;
+    text-shadow: 0 2px 24px rgba(251, 146, 60, 0.25);
+  }
+
+  .tropical-btn-primary {
+    font-family: var(--font-display);
+    @apply w-full py-3.5 rounded-xl font-semibold text-sm border border-white/25 transition active:scale-[0.99];
+    background: linear-gradient(180deg, rgba(45, 212, 191, 0.95), rgba(20, 184, 166, 0.88));
+    color: rgba(4, 44, 36, 0.96);
+    box-shadow:
+      0 12px 32px rgba(2, 40, 32, 0.4),
+      var(--shadow-glow-sunset);
+  }
+
+  .tropical-btn-primary:hover {
+    filter: brightness(1.06);
+  }
+
+  .tropical-btn-ghost {
+    @apply rounded-xl border border-white/18 bg-white/6 font-semibold text-cream-300 transition hover:bg-white/10;
+  }
+
+  .tropical-btn-outline {
+    @apply rounded-xl border border-white/20 bg-black/25 text-sm font-semibold text-cream-300 transition hover:bg-white/8;
+  }
+
+  .tropical-hud-pill {
+    @apply px-2.5 py-1 rounded-xl text-xs font-bold border border-white/12 bg-black/35 backdrop-blur-sm text-cream-200;
+  }
+
+  .tropical-frame {
+    @apply rounded-2xl overflow-hidden border border-white/15 bg-black/25 backdrop-blur-sm;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 16px 48px rgba(2, 20, 16, 0.45);
+  }
+
+  .tropical-device-card {
+    @apply rounded-2xl p-6 border border-white/12 backdrop-blur-xl;
+    background: linear-gradient(145deg, rgba(45, 212, 191, 0.08) 0%, rgba(0, 0, 0, 0.28) 100%);
+  }
+
+  .tropical-neuro-bar {
+    @apply flex items-center gap-3 px-3 py-2 rounded-xl text-sm border border-white/12 bg-black/30 backdrop-blur-md;
+  }
+
+  .tropical-stat-label {
+    @apply text-[10px] uppercase tracking-wider text-muted-tropical;
+  }
+
+  .tropical-mode-on {
+    @apply bg-lagoon-500/25 border-lagoon-400/40;
+  }
+}
